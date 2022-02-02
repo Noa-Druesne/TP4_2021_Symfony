@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Covers{% endblock %}
+
+{% block body %}
+    <h1>Covers</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cover.id }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ cover.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Caption</th>
+                <td>{{ cover.caption }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ cover.date ? cover.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ cover.source }}</td>
+            </tr>
+            <tr>
+                <th>Licence</th>
+                <td>{{ cover.licence }}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ cover.filename }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('covers_index') }}">back to list</a>
+
+    <a href="{{ path('covers_edit', {'id': cover.id}) }}">edit</a>
+
+    {{ include('covers/_delete_form.html.twig') }}
+{% endblock %}

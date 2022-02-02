@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Covers index{% endblock %}
+
+{% block body %}
+    <h1>Covers index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Isbn</th>
+                <th>Caption</th>
+                <th>Date</th>
+                <th>Source</th>
+                <th>Licence</th>
+                <th>Filename</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cover in covers %}
+            <tr>
+                <td>{{ cover.id }}</td>
+                <td>{{ cover.isbn }}</td>
+                <td>{{ cover.caption }}</td>
+                <td>{{ cover.date ? cover.date|date('Y-m-d') : '' }}</td>
+                <td>{{ cover.source }}</td>
+                <td>{{ cover.licence }}</td>
+                <td>{{ cover.filename }}</td>
+                <td>
+                    <a href="{{ path('covers_show', {'id': cover.id}) }}">show</a>
+                    <a href="{{ path('covers_edit', {'id': cover.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('covers_new') }}">Create new</a>
+{% endblock %}
